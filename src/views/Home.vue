@@ -138,26 +138,31 @@ export default {
 }
 .filter {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   margin-right: 22px;
   margin-bottom: 15px;
   &__name {
     text-transform: capitalize;
+    margin-top: 5px;
+  }
+  &__label {
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    color: grey;
+    display: inline-block;
   }
   &__content {
     display: flex;
-    flex-direction: column;
     label {
+      position: relative;
       margin-top: 5px;
     }
     input {
+      margin-left: 5px;
+      text-align: right;
       box-sizing: border-box;
-      width: 170px;
-      min-width: 170px;
-    }
-    &__label {
-      display: inline-block;
-      width: 30px;
+      width: 125px;
     }
   }
 }
