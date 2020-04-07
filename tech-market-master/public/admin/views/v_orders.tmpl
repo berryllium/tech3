@@ -1,0 +1,33 @@
+<h3 class="text-center">Заказы</h3>
+<table class="col-12">
+  <tr>
+    <th>Статус</th>
+    <th>Дата</th>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Email</th>
+    <th>Товары</th>
+  </tr>
+
+  {% for order in orders %}
+  {% if order.status %}
+  <tr class="done">
+    <td>Выполнен</td>
+    {% else %}
+    <tr>
+      <td> <a href="?page=orders&act=done&id={{ order.id }}">Завершить</a></td>
+    {% endif %}
+    <td> {{ order.date }} </td>
+    <td> {{ order.name }} </td>
+    <td> {{ order.email }} </td>
+    <td> {{ order.phone }} </td>
+    <td> {{ order.products }} </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<style>
+  .done {
+    background-color: lightgreen;
+  }
+</style>

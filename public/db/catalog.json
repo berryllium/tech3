@@ -1,0 +1,180 @@
+[
+  {
+    "categories": [
+      {
+        "name": "Телефоны",
+        "img": "phone.png"
+      },
+      {
+        "name": "Автотовары",
+        "img": "phone.png"
+      },
+      {
+        "name": "Аксессуары",
+        "img": "phone.png"
+      }
+    ]
+  },
+  {
+    "products": [
+      {
+        "id": 1,
+        "category": "Телефоны",
+        "title": "Iphone 18s",
+        "price_old": 18900,
+        "price_new": 16500,
+        "img": "image-phone1.jpg",
+        "photo": [
+          {
+            "src": "image-phone.jpg",
+            "alt": "13\""
+          },
+          {
+            "src": "phone.png",
+            "alt": "10\""
+          }
+        ],
+        "features": "Здесь вписываем особенности товара",
+        "description": "Отличный смартфон с OS от разработчиков железа",
+        "properties": [
+          {
+            "name": "Диагональ",
+            "value": "10\""
+          },
+          {
+            "name": "Емкость батареи",
+            "value": "1800mAh"
+          }
+        ],
+        "feedbacks": [
+          {
+            "name": "Вася",
+            "date": "18.12.2019",
+            "rating": 3,
+            "text": "Фу какой"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "category": "Автотовары",
+        "title": "Колесо",
+        "price_old": 18900,
+        "price_new": 16500,
+        "img": "image-phone.jpg",
+        "photo": [
+          {
+            "src": "image-phone1.jpg",
+            "alt": "13\""
+          },
+          {
+            "src": "phone.png",
+            "alt": "10\""
+          }
+        ],
+        "features": "Здесь вписываем особенности товара",
+        "description": "Отличный смартфон с OS от разработчиков железа",
+        "properties": [
+          {
+            "name": "Диаметр обода",
+            "value": "17\""
+          },
+          {
+            "name": "Емкость батареи",
+            "value": "1800mAh"
+          }
+        ],
+        "feedbacks": [
+          {
+            "name": "Антон",
+            "date": "18.12.2019",
+            "rating": 5,
+            "text": "Текст отзыва"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "category": "Аксессуары",
+        "title": "Чехол",
+        "price_old": 20000,
+        "price_new": 17800,
+        "img": "image-phone.jpg",
+        "photo": [
+          {
+            "src": "image-phone2.jpg",
+            "alt": "17\""
+          },
+          {
+            "src": "phone.png",
+            "alt": "30\""
+          }
+        ],
+        "features": "Здесь вписываем особенности товара",
+        "description": "Отличный смартфон с OS от разработчиков железа",
+        "properties": [
+          {
+            "name": "Диагональ",
+            "value": "10\""
+          },
+          {
+            "name": "Емкость батареи",
+            "value": "1800mAh"
+          }
+        ],
+        "feedbacks": [
+          {
+            "name": "Антон",
+            "date": "18.12.2019",
+            "rating": 3,
+            "text": "Текст отзыва"
+          },
+          {
+            "name": "Володя",
+            "date": "18.12.2017",
+            "rating": 5,
+            "text": "Отличный товар"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "category": "Аксессуары",
+        "title": "Защитное стекло",
+        "price_old": 1000,
+        "price_new": 500,
+        "img": "image-phone.jpg",
+        "photo": [
+          {
+            "src": "image-phone1.jpg",
+            "alt": "1d3\""
+          },
+          {
+            "src": "phone.png",
+            "alt": "1a0\""
+          }
+        ],
+        "features": "Здесь вписываем особенности товара",
+        "description": "Отличный смартфон с OS от разработчиков железа",
+        "properties": [
+          {
+            "name": "Диагональ",
+            "value": "10\""
+          },
+          {
+            "name": "Емкость батареи",
+            "value": "1800mAh"
+          }
+        ],
+        "feedbacks": [
+          {
+            "name": "Антон",
+            "date": "18.12.2019",
+            "rating": 4,
+            "text": "Текст отзыва"
+          }
+        ]
+      }
+    ]
+  }
+]
