@@ -38,9 +38,9 @@
           <p>
             <a :href="'tel: '+ getContacts.phone">{{getContacts.phone}}</a>
           </p>
-          <p>
+          <!-- <p>
             <a :href="'mailto: '+ getContacts.email">{{getContacts.email}}</a>
-          </p>
+          </p> -->
           <div class="soc-icons">
             <a :href="getContacts.whatsapp">
               <i class="fa fa-whatsapp" aria-hidden="true"></i>

@@ -13,17 +13,6 @@
         </div>
       </div>
       <div class="product-card">
-        <div class="block-feedback">
-          <div class="stars stars_four">
-            <i class="fa" :class="rating > 0 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
-            <i class="fa" :class="rating > 1 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
-            <i class="fa" :class="rating > 2 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
-            <i class="fa" :class="rating > 3 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
-            <i class="fa" :class="rating > 4 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
-          </div>
-          <div class="counter">Отзывы: {{oneProduct.feedbacks.length}}</div><br>
-          {{oneProduct.features}}
-        </div>
         <div class="properties">
           <!-- <header class="properties__header">Особенности товара</header> -->
           <!-- <div class="properties__content">{{oneProduct.features}}</div> -->
@@ -52,9 +41,42 @@
             @click="toCart"
             :data-id="oneProduct.id"
           >В корзине</router-link>
-          <button v-else class="cart-btn" @click="toCart" :data-id="oneProduct.id">Добавить в корзину</button>
+          <button
+            v-else
+            class="cart-btn"
+            @click="toCart"
+            :data-id="oneProduct.id"
+          >Добавить в корзину</button>
         </div>
         <!-- здесь были особенности товара -->
+      </div>
+        <div class="product-spec">
+        <div class="block-feedback">
+          <div class="stars stars_four">
+            <i class="fa" :class="rating > 0 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+            <i class="fa" :class="rating > 1 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+            <i class="fa" :class="rating > 2 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+            <i class="fa" :class="rating > 3 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+            <i class="fa" :class="rating > 4 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
+          </div>
+          <div class="counter">Отзывы: {{oneProduct.feedbacks.length}}</div>
+          <br />
+        </div>
+          <table class="tabs__table">
+            <tr><th colspan="2">Характеристики</th></tr>
+            <tr v-for="spec in oneProduct.spec" :key="spec.id">
+              <td>{{spec.prop}}</td>
+              <td>{{spec.value}}</td>
+            </tr>
+            <!-- <tr>
+              <td>Свойство</td>
+              <td>Значение</td>
+            </tr>
+            <tr>
+              <td>Свойство</td>
+              <td>Значение</td>
+            </tr> -->
+          </table>
       </div>
     </section>
     <section class="section-tabs">
@@ -65,11 +87,6 @@
             :class="this.tab == 'desc'?'active':''"
             @click="changeTab('desc')"
           >Описание</li>
-          <li
-            class="tabs__link"
-            :class="this.tab == 'prop'?'active':''"
-            @click="changeTab('prop')"
-          >Характеристики</li>
           <li
             class="tabs__link"
             :class="this.tab == 'guar'?'active':''"
@@ -88,14 +105,6 @@
         </ul>
         <div class="tabs__content">
           <div class="tabs__item" v-if="this.tab=='desc'">{{oneProduct.desc}}</div>
-          <div class="tabs__item" v-if="this.tab=='prop'">
-            <table class="tabs__table">
-              <tr v-for="spec in oneProduct.spec" :key="spec.id">
-                <td>{{spec.prop}}</td>
-                <td>{{spec.value}}</td>
-              </tr>
-            </table>
-          </div>
           <div class="tabs__item" v-if="this.tab=='guar'">
             <h4>Гарантия от производителя</h4>
             <li>На данную модель гироскутера распространяется официальная гарантия от производителя на бесплатный ремонт и обслуживание в течении 12 месяцев.</li>
@@ -213,19 +222,43 @@ h1 {
   text-align: left;
 }
 .section-buy {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  'slider spec' 
+  'card spec';
+  grid-gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 15px;
 }
 .slider-wrap {
-  width: 50%;
-  height: 0px;
+  grid-area: slider;
   opacity: 0;
 }
 .product-card {
+  grid-area: card;
   box-sizing: border-box;
-  width: 50%;
-  padding-left: 10px;
+}
+.product-spec {
+  grid-area: spec;
+    .tabs__table {
+    border-collapse: collapse;
+    width: 100%;
+    th,
+    td {
+      border: 1px solid @blue;
+      padding: 10px;
+    }
+    td {
+      width: 50%;
+    }
+    th {
+      text-align: left;
+      color: white;
+      background-color: @blue;
+      font-size: 1.2em;
+    }
+  }
 }
 .block-feedback {
   margin-bottom: 20px;
@@ -338,20 +371,6 @@ h1 {
   }
   .tabs__content {
     padding: 10px;
-  }
-  .tabs__table {
-    border-collapse: collapse;
-    width: 100%;
-    th,
-    td {
-      padding: 5px;
-    }
-    td {
-      width: 50%;
-    }
-    th {
-      background-color: lighten(@grey, 40%);
-    }
   }
 }
 </style>
