@@ -24,7 +24,7 @@
       <form id="form_{{category.id}}" action="?page=categories&act=update&id={{category.id}}" method="post"
         enctype="multipart/form-data">
         <input type="text" name="name" value="{{ category.name }}">
-        <input type="text" name="title" value="{{ category.title }}">
+        <!-- <input type="text" name="title" value="{{ category.title }}"> -->
         <input hidden type="text" name="id" value="{{ category.id }}">
         <input type="file" name="img" accept="image/jpeg,image/png,image/gif">
         <div>
@@ -38,7 +38,7 @@
             <tr>
               <td><input type="text" name="prop_name[]" placeholder="Характеристика" value="{{prop.name}}" required>
               </td>
-              <td><input type="text" name="prop_unit[]" placeholder="Единицы измерения" value="{{prop.unit}}" required>
+              <td><input type="text" name="prop_unit[]" placeholder="Единицы измерения" value="{{prop.unit}}">
               </td>
               <td>
                 <select name="prop_filter[]">
@@ -72,7 +72,7 @@
       <tr>
       <td><input type="text" name="prop_name[]" placeholder="Характеристика" value="" required>
       </td>
-      <td><input type="text" name="prop_unit[]" placeholder="Единицы измерения" value="" required>
+      <td><input type="text" name="prop_unit[]" placeholder="Единицы измерения" value="">
       </td>
       <td>
         <select name="prop_filter[]">
