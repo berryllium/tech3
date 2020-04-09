@@ -65,8 +65,8 @@
           <table class="tabs__table">
             <tr><th colspan="2">Характеристики</th></tr>
             <tr v-for="spec in oneProduct.spec" :key="spec.id">
-              <td>{{spec.prop}}</td>
-              <td>{{spec.value}}</td>
+              <td v-if="spec.value">{{spec.prop}}</td>
+              <td v-if="spec.value">{{spec.value}}</td>
             </tr>
             <!-- <tr>
               <td>Свойство</td>
