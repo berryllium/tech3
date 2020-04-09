@@ -21,6 +21,11 @@ if($page == 'api') {
   exit;
 }
 
+if($page == 'updates') {
+  require_once('controllers/c_updates.php');
+  exit;
+}
+
 if ($isAdmin) {
 
   switch ($page) {
