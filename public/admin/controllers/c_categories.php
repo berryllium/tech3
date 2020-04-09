@@ -15,6 +15,7 @@ if ($_GET['act'] && !empty($_POST)) {
 
 // удаление характеристики
 if ($_GET['act'] == 'delprop') {
+  $catalog->db->Delete('specifications', 'id_prop', $_GET['id']);
   $catalog->db->Delete('properties', 'id', $_GET['id']);
 }
 

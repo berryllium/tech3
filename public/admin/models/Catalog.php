@@ -51,7 +51,21 @@ class Catalog
         ];
         if ($category['prop_id'][$i]) {
           $this->db->Update('properties', $props, 'id', $category['prop_id'][$i]);
-        } else $this->db->Insert('properties', $props);
+        } else {
+          // добавляем новую характеристику и присваиваем ее всем товарам категории
+          $id_prop = $this->db->Insert('properties', $props);
+          $id_cat = $cat['id'];
+          $products = $this->db->Select('products', 'id_cat', $id_cat, true);
+          foreach ($products as $product) {
+            $id_prod = $product['id'];
+            $spec = [
+              'id_prod' => $id_prod,
+              'id_prop' => $id_prop,
+              'value' => ''
+            ];
+            $this->db->Insert('specifications', $spec);
+          }
+        }
       }
     }
     if ($action == 'update') {
