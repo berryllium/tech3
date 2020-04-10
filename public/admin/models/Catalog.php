@@ -7,7 +7,7 @@ class Catalog
   }
 
   public function getSpecifications($id) {
-    return $this->db->CompositeQuery("SELECT t1.id, t1.value, t2.name, t2.unit FROM `specifications` AS `t1` 
+    return $this->db->CompositeQuery("SELECT t1.id, t1.value, t1.id_prop, t2.name, t2.unit FROM `specifications` AS `t1` 
     INNER JOIN `properties` AS t2 ON t1.id_prop = t2.id WHERE t1.id_prod = $id");
   }
 
@@ -86,7 +86,6 @@ class Catalog
   }
   public function saveFeedback($feedback)
   {
-    print_r($feedback);
     $this->db->Insert('feedbacks', $feedback);
   }
   public function getAll()
@@ -155,13 +154,17 @@ class Catalog
       $product['id_cat'] = $id_cat;
       $id = $this->db->Insert('products', $product);
     }
-
+    var_dump($post);
+    
     if (!empty($spec_prop))
       for ($k = 0; $k < count($spec_prop); $k++) {
-        if ($id_spec[$k]) {
-          $this->db->Update('specifications', [
-            'value' => $spec_val[$k]
-          ], 'id', $id_spec[$k]);
+        if ($spec_prop[$k]) {
+          $id_prop = $spec_prop[$k];
+          $val = $spec_val[$k];
+          $this->db->CompositeQuery("UPDATE specifications SET value = $val WHERE id_prod = $id AND id_prop = $id_prop");
+          // $this->db->Update('specifications', [
+          //   'value' => $spec_val[$k]
+          // ], 'id', $spec_prop[$k]);
         } else {
           $this->db->Insert('specifications', [
             'id_prod' => $id,

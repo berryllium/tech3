@@ -10,8 +10,8 @@
     {% for spec in specifications %}
     <tr>
       <td>{{spec.name}} ({{spec.unit}})</td>
-      <td><input type="text" name="spec_val[]" placeholder="Значение" value="{{spec.value}}" required></td>
-      <input type="hidden" name="id_spec[]" value="{{spec.id}}">
+      <td><input type="text" name="spec_val[]" placeholder="Значение" value="{{spec.value}}"></td>
+      <input type="hidden" name="spec_prop[]" value="{{spec.id_prop}}">
     </tr>
     {% endfor %}
 

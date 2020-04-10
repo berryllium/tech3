@@ -25,7 +25,6 @@ class Cart
   public function removeProduct($id_prod)
   {
     $buy = $this->getBuy(5);
-    print_r($buy);
     echo 'а у меня id ' . $id_prod;
     // if ($buy['count'] > 1) {
     //   $buy['count']--;

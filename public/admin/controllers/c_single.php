@@ -8,12 +8,9 @@ if($_GET['id_img']) {
   $catalog->db->Delete('photos', 'id', $id_img);
 }
 
-if(!empty($_POST)) {
-  print_r($_POST);
-}
 
 $specifications = $catalog->getSpecifications($id);
-print_r($specifications);
+
 $photos = $catalog->db->Select('photos', 'id_prod', $id, true);
 $product = $catalog->getProduct($id);
 $data = array(
