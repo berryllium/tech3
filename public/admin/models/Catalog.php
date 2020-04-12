@@ -6,7 +6,8 @@ class Catalog
     $this->db = SQL::Instance();
   }
 
-  public function getSpecifications($id) {
+  public function getSpecifications($id)
+  {
     return $this->db->CompositeQuery("SELECT t1.id, t1.value, t1.id_prop, t2.name, t2.unit FROM `specifications` AS `t1` 
     INNER JOIN `properties` AS t2 ON t1.id_prop = t2.id WHERE t1.id_prod = $id");
   }
@@ -106,11 +107,11 @@ class Catalog
       $product = [];
       $product['desc'] = $v['detail'];
       $product['photos'] = $this->db->Select('photos', 'id_prod', $id, true);
-      $product['feedbacks'] = $this->db->CompositeQuery("SELECT * FROM feedbacks WHERE allow = 1");
+      $product['feedbacks'] = $this->db->CompositeQuery("SELECT * FROM feedbacks WHERE id_prod = $id AND allow = 1");
       $product['spec'] = $this->db->CompositeQuery("SELECT t1.value AS `value`, t2.name AS prop, t2.filter AS `filter` 
       FROM specifications AS t1 INNER JOIN properties AS t2 WHERE t1.id_prop = t2.id AND t1.id_prod = $id");
       // Select('specifications', 'id_prod', $v['id'], true)
-      
+
       foreach ($v as $key => $value) {
         $product[$key] = $value;
       }
@@ -154,25 +155,32 @@ class Catalog
       $product['id_cat'] = $id_cat;
       $id = $this->db->Insert('products', $product);
     }
-    var_dump($post);
-    
-    if (!empty($spec_prop))
+
+
+    if (!empty($spec_prop)) {
       for ($k = 0; $k < count($spec_prop); $k++) {
-        if ($spec_prop[$k]) {
-          $id_prop = $spec_prop[$k];
-          $val = $spec_val[$k];
-          $this->db->CompositeQuery("UPDATE specifications SET value = $val WHERE id_prod = $id AND id_prop = $id_prop");
-          // $this->db->Update('specifications', [
-          //   'value' => $spec_val[$k]
-          // ], 'id', $spec_prop[$k]);
+        $id_prop = $spec_prop[$k];
+        $val = $spec_val[$k];
+        var_dump($this->db->CompositeQuery("SELECT id FROM specifications WHERE id_prod = $id AND id_prop = $id_prop"));
+        if ($this->db->CompositeQuery("SELECT id FROM specifications WHERE id_prod = $id AND id_prop = $id_prop")) {
+          echo "есть такая хар-ка";
+          if ($val) {
+            // echo "ОБНОВЛЯЕМ НЕПУСТОЕ ЗНАЧЕНИЕ";
+            $this->db->CompositeQuery("UPDATE specifications SET value = '$val' WHERE id_prod = $id AND id_prop = $id_prop");
+          } else {
+            // echo "ВСТАВЛЯЕМ ПУСТУЮ ХАРАКТЕРИСТИКУ";
+            $this->db->CompositeQuery("UPDATE specifications SET value = '' WHERE id_prod = $id AND id_prop = $id_prop");
+          }
         } else {
+          // echo "еще не было такой характеристики";
           $this->db->Insert('specifications', [
             'id_prod' => $id,
-            'id_prop' => $spec_prop[$k],
-            'value' => $spec_val[$k]
+            'id_prop' => $id_prop,
+            'value' => $val
           ]);
         }
       }
+    }
 
     if (($files['photo']['name'][0])) {
       $files = $files['photo'];
