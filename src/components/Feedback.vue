@@ -1,9 +1,10 @@
 <template>
   <div class="feedback">
     <header>
-      <div class="name">{{feedback.name}}</div>
+      <div class="name">{{feedback.user}}</div>
       <div class="date">{{feedback.date}}</div>
     </header>
+      <div class="title">{{feedback.title}}</div>
     <div class="stars stars_four">
       <i class="fa fa-star" aria-hidden="true"></i>
       <i class="fa" :class="feedback.rating > 1 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
@@ -42,6 +43,9 @@ export default {
   }
   .date {
     color: @grey;
+  }
+  .title {
+    font-size: 1.2em;
   }
   .fa-star,
   .fa-star-o {
