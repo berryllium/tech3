@@ -1,6 +1,7 @@
 <?php
 	
 	include_once 'config/db.php';
+	// echo __DIR__;
    
 	class SQL {
 		

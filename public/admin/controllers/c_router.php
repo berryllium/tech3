@@ -81,6 +81,11 @@ if ($isAdmin) {
         require_once('controllers/c_orders.php');
         break;
       }
+      case 'feedbacks': {
+        $view = 'v_feedbacks.tmpl';
+        require_once('controllers/c_feedbacks.php');
+        break;
+      }
     default: {
         $view = 'v_catalog.tmpl';
         require_once('controllers/c_catalog.php');
