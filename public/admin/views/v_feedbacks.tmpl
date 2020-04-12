@@ -16,8 +16,8 @@
   <tr class="allow">
     <td><a href="?page=feedbacks&act=drop&id={{ feedback.id }}">Запретить</a></td>
     {% else %}
-    <tr>
-      <td class="drop"> <a href="?page=feedbacks&act=allow&id={{ feedback.id }}">Разрешить</a></td>
+    <tr class="drop">
+      <td> <a href="?page=feedbacks&act=allow&id={{ feedback.id }}">Разрешить</a></td>
     {% endif %}
     <td> {{ feedback.date }} </td>
     <td> {{ feedback.user }} </td>

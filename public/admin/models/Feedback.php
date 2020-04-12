@@ -11,10 +11,12 @@ class Feedback
     $feedbacks = $this->db->Select('feedbacks');
     $full = [];
     foreach ($feedbacks as $k => $v) {
-      if ($product = $this->db->Select('products', 'id', $v['id_prod'])) {
+      if ($v['id_prod'] == '-1') {
+        $v['product'] = 'Магазин';
+      } elseif ($product = $this->db->Select('products', 'id', $v['id_prod'])) {
         $v['product'] = $product['title'];
       } else {
-        $v['product'] = 'Магазин';
+        $v['product'] = '-';
       }
       $full[] = $v;
     }
