@@ -1,6 +1,9 @@
 <template>
   <header>
     <div class="container">
+      <a to="/" class="menu-btn">
+        <span></span>
+      </a>
       <nav id="menu">
         <router-link class="menu__item" to="/">Главная</router-link>
         <router-link class="menu__item" to="/about">О нас</router-link>
@@ -40,7 +43,7 @@
           </p>
           <!-- <p>
             <a :href="'mailto: '+ getContacts.email">{{getContacts.email}}</a>
-          </p> -->
+          </p>-->
           <div class="soc-icons">
             <a :href="getContacts.whatsapp">
               <i class="fa fa-whatsapp" aria-hidden="true"></i>
@@ -67,11 +70,7 @@
         </div>
       </div>
     </div>
-     <CallForm
-      v-if="showForm"
-      @closeForm="closeForm"
-      @call="send($event)"
-    />
+    <CallForm v-if="showForm" @closeForm="closeForm" @call="send($event)" />
   </header>
 </template>
 
@@ -96,14 +95,14 @@ export default {
     },
     closeForm(target) {
       if (target == "form-wrap" || target == "form__close")
-      this.showForm = false;
+        this.showForm = false;
     },
     send(user) {
-      console.log(user)
-      let name = user.name
-      let phone = user.phone
-      let message = `Позвоните покупателю ${name} по номеру телефона ${phone}!`
-      this.sendMail(message)
+      console.log(user);
+      let name = user.name;
+      let phone = user.phone;
+      let message = `Позвоните покупателю ${name} по номеру телефона ${phone}!`;
+      this.sendMail(message);
     }
   },
   mounted() {
@@ -117,6 +116,65 @@ export default {
 
 <style lang="less" scoped>
 @import url("../style/variables.less");
+.menu-btn {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  justify-content: center;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: @brown;
+
+  span,
+  span:before,
+  span:after {
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -1px;
+    left: 50%;
+    margin-left: -10px;
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  span:before,
+  span:after {
+    content: "";
+    transition: 0.5s;
+    transform-origin: left bottom;
+  }
+
+  span:before {
+    transform: translateY(5px);
+  }
+
+  span:after {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: @phone) {
+    display: block;
+  }
+}
+.menu-btn_active {
+  span:before,
+  span:after {
+    width: 10px;
+  }
+
+  span:before {
+    transform: rotate(45deg);
+  }
+
+  span:after {
+    transform: rotate(-45deg);
+  }
+}
 #menu {
   display: flex;
   justify-content: space-between;
@@ -159,6 +217,50 @@ export default {
     border: 1px solid lighten(@grey, 30%);
     border-radius: 10px;
     padding: 5px;
+    @media (max-width: @phone) {
+      display: none;
+    }
+  }
+  @media (max-width: @phone) {
+    display: flex;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 30px;
+    padding-top: 40px;
+    background: lighten(@grey, 50%);
+    flex-direction: column;
+    .menu__item {
+      display: block;
+      padding: 20px;
+      &:hover {
+        transform: scale(1);
+        color: @blue;
+      }
+      .fa-shopping-cart {
+        position: relative;
+        font-size: 2em;
+        margin-right: 15px;
+        .cart-count {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.6em;
+          width: 20px;
+          height: 20px;
+          border-radius: 20px;
+          color: white;
+          background-color: @blue;
+          position: absolute;
+          right: -10px;
+          top: -5px;
+        }
+      }
+    }
   }
 }
 .header-logo {

@@ -16,7 +16,7 @@ import Footer from "@/components/Footer";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["loadingState"]),
+    ...mapGetters(["loadingState"])
   },
   components: {
     Header,
@@ -29,6 +29,20 @@ export default {
   created() {
     this.fetchCatalog();
     this.fetchFeedbacks();
+  },
+  mounted() {
+    var $ = require("jquery");
+    window.jQuery = $;
+    $(".menu-btn").on("click", function(e) {
+      e.preventDefault();
+      $(this).toggleClass("menu-btn_active");
+      $("nav").animate({ width: "toggle" }, 350);
+    });
+    if (screen.width < 768) {
+      $(".nav-item").on("click", () => {
+        $(".menu-btn").trigger("click");
+      });
+    }
   }
 };
 </script>
