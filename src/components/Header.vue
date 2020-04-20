@@ -126,7 +126,7 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: @brown;
+  background-color: @blue;
 
   span,
   span:before,
@@ -228,37 +228,23 @@ export default {
     z-index: 1;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    padding-left: 30px;
-    padding-top: 40px;
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    padding-top: 50px;
     background: lighten(@grey, 50%);
     flex-direction: column;
     .menu__item {
+      font-size: 1.5em;
       display: block;
       padding: 20px;
+      min-width: 250px;
       &:hover {
         transform: scale(1);
         color: @blue;
       }
       .fa-shopping-cart {
-        position: relative;
-        font-size: 2em;
-        margin-right: 15px;
-        .cart-count {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 0.6em;
-          width: 20px;
-          height: 20px;
-          border-radius: 20px;
-          color: white;
-          background-color: @blue;
-          position: absolute;
-          right: -10px;
-          top: -5px;
-        }
+        display: none;
       }
     }
   }

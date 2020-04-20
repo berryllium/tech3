@@ -39,7 +39,7 @@ export default {
       $("nav").animate({ width: "toggle" }, 350);
     });
     if (screen.width < 768) {
-      $(".nav-item").on("click", () => {
+      $(".menu__item").on("click", () => {
         $(".menu-btn").trigger("click");
       });
     }
