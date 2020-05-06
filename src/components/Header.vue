@@ -2,7 +2,10 @@
   <header>
     <div class="container">
       <a to="/" class="menu-btn">
-        <span></span>
+        <div>
+          <span></span>
+        </div>
+        <div>Меню</div>
       </a>
       <nav id="menu">
         <router-link class="menu__item" to="/">Главная</router-link>
@@ -25,18 +28,38 @@
           </i>
         </router-link>
       </nav>
-      <div class="header-info">
+      <div class="header-info_small" v-if="this.$parent.small">
+        <div class="delivery">
+          <p>Доставка за 2 часа</p>
+          <p>Оплата при получении</p>
+        </div>
+        <div class="logo">
+          <a href="/">
+            <img src="images/logo.png" />
+          </a>
+        </div>
+        <div class="phone">
+          <i class="fa fa-phone" aria-hidden="true"></i>
+          <p>
+            <a :href="'tel: '+ getContacts.phone">{{getContacts.phone}}</a>
+          </p>
+          <div class="call">
+            <button class="call-btn" @click="showForm=true">Обратный звонок</button>
+          </div>
+        </div>
+      </div>
+      <div class="header-info" v-else>
         <div class="header-info__item header-logo">
           <a href="/">
             <img src="images/logo.png" />
           </a>
         </div>
-        <div class="header-info__item">
+        <div class="header-info__item header-delivery">
           <i class="fa fa-map-marker left-icon" aria-hidden="true"></i>
           <p>{{getContacts.city}}, {{getContacts.street}}</p>
           <p>Доставка по Москве за 2-4 часа</p>
         </div>
-        <div class="header-info__item">
+        <div class="header-info__item header-phone">
           <i class="fa fa-phone left-icon" aria-hidden="true"></i>
           <p>
             <a :href="'tel: '+ getContacts.phone">{{getContacts.phone}}</a>
@@ -121,25 +144,24 @@ export default {
   position: absolute;
   z-index: 2;
   justify-content: center;
-  top: 10px;
-  left: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: @blue;
+  top: 20px;
+  left: 50px;
+  color: @blue;
+  text-transform: uppercase;
+  font-weight: bold;
 
+  span {
+    left: -30px;
+    top: 7px;
+  }
   span,
   span:before,
   span:after {
     position: absolute;
     display: block;
-    top: 50%;
-    margin-top: -1px;
-    left: 50%;
-    margin-left: -10px;
     width: 20px;
     height: 2px;
-    background-color: #fff;
+    background-color: @blue;
   }
 
   span:before,
@@ -178,6 +200,7 @@ export default {
 #menu {
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
   align-items: center;
   height: 45px;
   border-bottom: 2px solid #e1e1e1;
@@ -235,9 +258,9 @@ export default {
     background: lighten(@grey, 50%);
     flex-direction: column;
     .menu__item {
-      font-size: 1.5em;
+      font-size: 1.2em;
       display: block;
-      padding: 20px;
+      padding: 20px 0;
       min-width: 250px;
       &:hover {
         transform: scale(1);
@@ -292,6 +315,69 @@ export default {
           opacity: 1;
         }
       }
+    }
+    .call {
+      margin-top: 5px;
+    }
+    .call-btn {
+      width: 100%;
+      transition-duration: 0.3s;
+      border-radius: 5px;
+      padding: 5px 5px;
+      border: 1px solid @blue;
+      background: none;
+      color: @blue;
+      outline: none;
+      &:hover {
+        cursor: pointer;
+        background-color: @blue;
+        color: white;
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+.header-info_small {
+  position: relative;
+  box-sizing: border-box;
+  padding: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100px;
+  .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      padding-top: 10px;
+      display: block;
+      width: 70px;
+    }
+  }
+  .delivery {
+    width: 45%;
+    p {
+      font-size: 0.9em;
+    }
+  }
+  .phone {
+    width: 45%;
+    text-align: right;
+    p {
+      text-align: right;
+      padding-left: 5px;
+      padding-bottom: 15px;
+      display: inline-block;
+    }
+    .fa {
+      display: inline-block;
     }
     .call {
       margin-top: 5px;

@@ -5,7 +5,7 @@
       <Catalog />
       <router-view />
     </main>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -15,6 +15,9 @@ import Catalog from "@/components/Catalog";
 import Footer from "@/components/Footer";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
+  data: {
+    small: false
+  },
   computed: {
     ...mapGetters(["loadingState"])
   },
@@ -24,11 +27,19 @@ export default {
     Catalog
   },
   methods: {
-    ...mapActions(["fetchCatalog", "fetchFeedbacks"])
+    ...mapActions(["fetchCatalog", "fetchFeedbacks"]),
+    onResize() {
+        this.small = window.innerWidth <= 600;
+    }
   },
   created() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
     this.fetchCatalog();
     this.fetchFeedbacks();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.onResize)
   },
   mounted() {
     var $ = require("jquery");

@@ -148,4 +148,63 @@ export default {
   width: 100%;
   margin-bottom: 10px;
 }
+  @media (max-width: @phone) {
+    .footer__wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 5px 0;
+  border-top: 2px solid #e1e1e1;
+}
+.fa {
+  font-size: 1.5em;
+  color: @blue;
+}
+.footer__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.footer__title {
+  margin-left: 10px;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: @blue;
+}
+.footer__par {
+  color: @grey;
+  margin-bottom: 10px;
+  a {
+    &:hover {
+      color: @blue;
+    }
+  }
+}
+.soc-icons {
+  i {
+    opacity: 0.8;
+    transition-duration: 0.3s;
+    font-size: 1.5em;
+    margin-right: 10px;
+    &.fa-whatsapp {
+      color: #11c200;
+    }
+    &.fa-telegram {
+      color: #0088cc;
+    }
+    &.fa-vk {
+      color: #597da3;
+    }
+    &.fa-instagram {
+      color: #cc000f;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+.payment-img {
+  width: 10px;
+  margin-bottom: 10px;
+}
+  }
 </style>
