@@ -40,4 +40,9 @@
       color: white;
     }
   }
+    @media (max-width: @phone) {
+    .about {
+      gap: 0;
+    }
+  }
 </style>

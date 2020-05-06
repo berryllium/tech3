@@ -125,10 +125,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url("../style/variables.less");
 .products {
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(4, 1fr);
+  @media (max-width: @phone) {
+    gap: 5px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .filters {
   padding: 0;

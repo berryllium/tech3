@@ -5,7 +5,7 @@
       <Catalog />
       <router-view />
     </main>
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   methods: {
     ...mapActions(["fetchCatalog", "fetchFeedbacks"]),
     onResize() {
-        this.small = window.innerWidth <= 600;
+        this.small = window.innerWidth <= 760;
     }
   },
   created() {

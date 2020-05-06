@@ -1,11 +1,28 @@
 <template>
-  <aside class="catalog" @click="closeMenu">
-    <div class="catalog__header">
+  <aside class="catalog">
+    <div class="catalog__header" @click="toggleCatalog" v-if="this.$parent.small">
+      <div class="left">
+        <i class="fa fa-bars"></i>
+        <div class="catalog__title">Каталог товаров</div>
+      </div>
+      <router-link class="right" to="/cart">
+        <i class="fa fa-shopping-cart" aria-hidden="true">
+          <div v-if="getAllCount" class="cart-count">{{getAllCount}}</div>
+        </i>
+      </router-link>
+    </div>
+    <div class="catalog__header" @click="toggleCatalog" v-else>
       <div class="catalog__title">Каталог товаров</div>
       <i class="fa fa-bars"></i>
     </div>
-    <ul class="catalog__list">
-      <catalog-sub :showMenu="showMenu" v-for="category in allCategories" :category="category" :key="category.name" />
+
+    <ul class="catalog__list" @click="closeMenu" v-if="showCatalog">
+      <catalog-sub
+        :showMenu="showMenu"
+        v-for="category in allCategories"
+        :category="category"
+        :key="category.name"
+      />
     </ul>
   </aside>
 </template>
@@ -18,7 +35,8 @@ export default {
   },
   data() {
     return {
-      showMenu: true
+      showMenu: true,
+      showCatalog: true
     };
   },
   computed: {
@@ -27,8 +45,18 @@ export default {
   methods: {
     closeMenu() {
       this.showMenu = false;
-      setTimeout(() => (this.showMenu = true), 200);
+      setTimeout(() => (this.showMenu = true), 1000);
+      this.toggleCatalog();
+    },
+    toggleCatalog() {
+      if (event.target.classList.contains("fa-shopping-cart")) this.showCatalog = false
+      else if (this.$parent.small) {
+        this.showCatalog = !this.showCatalog;
+      }
     }
+  },
+  mounted() {
+    if (this.$parent.small) this.showCatalog = false;
   }
 };
 </script>
@@ -48,6 +76,12 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 15px;
+    .left {
+      display: flex;
+      .fa {
+        margin-right: 5px;
+      }
+    }
   }
 
   &__title {
@@ -57,6 +91,20 @@ export default {
   &__list {
     list-style-type: none;
     padding: 0px;
+  }
+}
+
+@media (max-width: @phone) {
+  .catalog {
+    width: 100%;
+    &__header {
+    }
+
+    &__title {
+    }
+
+    &__list {
+    }
   }
 }
 </style>
