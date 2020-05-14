@@ -41,6 +41,9 @@
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(4, 1fr);
+    @media (max-width: @phone) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .delivery-item {
   display: flex;

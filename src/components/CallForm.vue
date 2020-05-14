@@ -88,6 +88,9 @@ export default {
   padding: 20px;
   width: 30%;
   background-color: #fff;
+    @media (max-width: @phone) {
+    width: 100%;
+  }
   &__close {
     cursor: pointer;
     font-size: 1.5em;

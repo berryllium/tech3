@@ -5,54 +5,66 @@
       <div class="address">
         <div class="info__item">
           <i class="fa fa-map-marker left-icon" aria-hidden="true"></i>
-          <p>Москва, ул. Лермонтова</p>
+          <p>{{getContacts.city}}, {{getContacts.street}}</p>
         </div>
         <div class="info__item">
           <i class="fa fa-phone left-icon" aria-hidden="true"></i>
           <p>
-            <a href="tel: 89999999999">8(999)999-99-99</a>
-          </p>
-          <p>
-            <a href="tel: 89999999999">8(999)999-99-99</a>
+            <a :href="'tel: '+ getContacts.phone">{{getContacts.phone}}</a>
           </p>
           <div class="soc-icons">
-            <a href="#">
+            <a :href="getContacts.whatsapp">
               <i class="fa fa-whatsapp" aria-hidden="true"></i>
             </a>
-            <a href="#">
+            <a :href="getContacts.telegram">
               <i class="fa fa-telegram" aria-hidden="true"></i>
             </a>
           </div>
         </div>
         <div class="info__item">
           <i class="fa fa-envelope-o left-icon" aria-hidden="true"></i>
-          <p><a href="mailto: email@yandex.ru">email@yandex.ru</a></p>
+          <p><a :href="'mailto: '+ getContacts.email">{{getContacts.email}}</a></p>
         </div>
         <div class="info__item">
           <i class="fa fa-clock-o left-icon" aria-hidden="true"></i>
           <p>
             Прием заказов и доставка
-            <b>8.00&#8209;24.00</b>
+            <b>{{getContacts.time1}}</b>
           </p>
           <p>
             Самовывоз
-            <b>10.00&#8209;19.00</b>
+            <b>{{getContacts.time2}}</b>
           </p>
           <p>Работаем без выходных</p>
         </div>
       </div>
-      <div class="map">
+      <div v-if="this.$parent.small" class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af1ee48f526c937a08a9f4716c0d01103b6a37a027f1f39c5f92f73c0b9a84252&amp;source=constructor" width=100% height="350" frameborder="0"></iframe>
+      </div>
+      <div v-else class="map">
         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af1ee48f526c937a08a9f4716c0d01103b6a37a027f1f39c5f92f73c0b9a84252&amp;source=constructor" width="550" height="350" frameborder="0"></iframe>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["getContacts"])
+  }
+};
+</script>
+
 <style lang="less" scoped>
 @import url("../style/variables.less");
 .contacts {
   display: flex;
   justify-content: space-between;
+  @media (max-width: @phone) {
+    flex-direction: column-reverse;
+  }
 }
 .info__item {
   color: @grey;
@@ -62,6 +74,9 @@
   position: relative;
   padding-left: 50px;
   font-size: 1.1em;
+  @media (max-width: @phone) {
+    font-size: 0.9em;
+  }
   p {
     margin: 4px 0;
   }

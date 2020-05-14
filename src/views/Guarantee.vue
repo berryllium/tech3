@@ -20,13 +20,15 @@
       </li>
       <li class="rool">
         <i class="fa fa-wrench" aria-hidden="true"></i>
-        Право на
-        <span class="upper">БЕСПЛАТНОЕ</span> гарантийное обслуживание дает гарантийный талон, в котором указываются:
-        <ul class="rool__list">
-          <li class="rool__li">модель</li>
-          <li class="rool__li">гарантийный срок</li>
-          <li class="rool__li">дата продажи товара</li>
-        </ul>
+        <div>
+          Право на
+          <span class="upper">БЕСПЛАТНОЕ</span> гарантийное обслуживание дает гарантийный талон, в котором указываются:
+          <ul class="rool__list">
+            <li class="rool__li">модель</li>
+            <li class="rool__li">гарантийный срок</li>
+            <li class="rool__li">дата продажи товара</li>
+          </ul>
+        </div>
       </li>
       <li class="rool">
         <i class="fa fa-undo" aria-hidden="true"></i>
@@ -60,6 +62,14 @@
   text-align: justify;
   margin-bottom: 50px;
   padding-left: 80px;
+  @media (max-width: @phone) {
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+    margin-bottom: 30px;
+  }
   &__upper {
     text-transform: uppercase;
     font-weight: bold;
@@ -72,6 +82,12 @@
     left: 0;
     font-size: 4em;
     float: left;
+    @media (max-width: @phone) {
+      position: relative;
+      width: auto;
+      float: initial;
+      padding-bottom: 10px;
+    }
   }
   .color {
     color: @blue;

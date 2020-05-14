@@ -38,7 +38,7 @@
               placeholder="Адрес доставки"
             ></textarea>
           </div>
-        <input type="submit" class="form__button" name="order" value="Оформить заказ" />
+          <input type="submit" class="form__button" name="order" value="Оформить заказ" />
         </div>
       </form>
     </div>
@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 export default {
-  props: ['id_prod'],
+  props: ["id_prod"],
   data() {
     return {
       user: {
@@ -61,13 +61,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions['quickBuy', 'sendCart'],
+    ...mapActions[("quickBuy", "sendCart")],
     onSubmit() {
       this.done = true;
       if (this.id_prod) {
-        this.$emit('quickOrder', {user: this.user, id_prod: this.id_prod})
-      }
-       else this.$emit('order', this.user)
+        this.$emit("quickOrder", { user: this.user, id_prod: this.id_prod });
+      } else this.$emit("order", this.user);
     },
     close() {
       this.$emit("closeForm", event.target.className);
@@ -106,6 +105,9 @@ export default {
   padding: 20px;
   width: 30%;
   background-color: #fff;
+  @media (max-width: @phone) {
+    width: 100%;
+  }
   &__close {
     cursor: pointer;
     font-size: 1.5em;
