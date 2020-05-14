@@ -5,6 +5,7 @@
     </router-link>
     <router-link :to="'/product'+ id " class="cart-product__name">{{product.title}}</router-link>
     <div class="cart-product__count">
+      <div class="cart-product__minus" @click="minus">-</div>
       <input
         type="number"
         min="1"
@@ -16,6 +17,7 @@
         @change="changeCount"
       />
       <label for="count">шт.</label>
+      <div class="cart-product__plus" @click="plus">+</div>
     </div>
     <div class="cart-product__price">{{product.price_new}} руб.</div>
     <div class="cart-product__price">{{price}} руб.</div>
@@ -47,6 +49,12 @@ export default {
     },
     rem() {
       this.removeFromCart(this.id);
+    },
+    plus() {
+      this.count++;
+    },
+    minus() {
+      if (this.count > 0) this.count--;
     }
   },
   mounted() {
@@ -62,6 +70,10 @@ export default {
   grid-template-columns: 20% 25% 20% 15% 15% 5%;
   align-items: center;
   margin-bottom: 20px;
+  @media (max-width: @phone) {
+    display: flex;
+    flex-direction: column;
+  }
   &__img {
     width: 150px;
     height: 150px;
