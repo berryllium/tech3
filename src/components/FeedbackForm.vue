@@ -7,7 +7,7 @@
         <div class="form__name">
           <label for="user">Ваше имя</label>
           <br />
-          <input v-model="feedback.user" type="name" id="user" name="user" required/>
+          <input v-model="feedback.user" type="name" id="user" name="user" required />
         </div>
         <div class="form__email">
           <label for="email">Ваша электронная почта</label>
@@ -17,13 +17,13 @@
         <div class="form__header">
           <label for="title">Заголовок отзыва</label>
           <br />
-          <input v-model="feedback.title" type="text" id="title" name="title" required/>
+          <input v-model="feedback.title" type="text" id="title" name="title" required />
         </div>
         <div class="form__rating">
           <label>Ваша оценка</label>
           <br />
           <div class="stars stars_four">
-            <star-rating v-model="feedback.rating" text-class="custom-text" required/>
+            <star-rating v-model="feedback.rating" text-class="custom-text" required />
           </div>
         </div>
         <div class="form__feedback">
@@ -41,7 +41,7 @@
 import StarRating from "vue-star-rating";
 import { mapActions } from "vuex";
 export default {
-  props: ['id'],
+  props: ["id"],
   data() {
     return {
       feedback: {
@@ -56,7 +56,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['sendFeedback']),
+    ...mapActions(["sendFeedback"]),
     onSubmit() {
       console.log(this.feedback);
       this.sendFeedback(this.feedback);
@@ -87,6 +87,15 @@ export default {
       "rating rating"
       "feedback feedback"
       "button button";
+    @media (max-width: @phone) {
+      grid-template-areas:
+        "name name"
+        "email email"
+        "header header"
+        "rating rating"
+        "feedback feedback"
+        "button button";
+    }
     textarea,
     input[type="text"],
     input[type="name"],
