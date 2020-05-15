@@ -73,6 +73,10 @@ export default {
   align-self: right;
   text-align: right;
   font-size: 1.2em;
+  @media (max-width: @phone) {
+    margin-bottom: 25px;
+    align-items: center;
+  }
   span {
     font-weight: bold;
   }
