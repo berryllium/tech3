@@ -50,7 +50,7 @@
         </div>
         <!-- здесь были особенности товара -->
       </div>
-        <div class="product-spec">
+      <div class="product-spec">
         <div class="block-feedback">
           <div class="stars stars_four">
             <i class="fa" :class="rating > 0 ? 'fa-star' : 'fa-star-o'" aria-hidden="true"></i>
@@ -62,21 +62,23 @@
           <div class="counter">Отзывы: {{oneProduct.feedbacks.length}}</div>
           <br />
         </div>
-          <table class="tabs__table">
-            <tr><th colspan="2">Характеристики</th></tr>
-            <tr v-for="spec in oneProduct.spec" :key="spec.id">
-              <td v-if="spec.value">{{spec.prop}}</td>
-              <td v-if="spec.value">{{spec.value}}</td>
-            </tr>
-            <!-- <tr>
+        <table class="tabs__table">
+          <tr>
+            <th colspan="2">Характеристики</th>
+          </tr>
+          <tr v-for="spec in oneProduct.spec" :key="spec.id">
+            <td v-if="spec.value">{{spec.prop}}</td>
+            <td v-if="spec.value">{{spec.value}}</td>
+          </tr>
+          <!-- <tr>
               <td>Свойство</td>
               <td>Значение</td>
             </tr>
             <tr>
               <td>Свойство</td>
               <td>Значение</td>
-            </tr> -->
-          </table>
+          </tr>-->
+        </table>
       </div>
     </section>
     <section class="section-tabs">
@@ -224,12 +226,18 @@ h1 {
 .section-buy {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: 
-  'slider spec' 
-  'card spec';
+  grid-template-areas:
+    "slider spec"
+    "card spec";
   grid-gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 15px;
+  @media (max-width: @phone) {
+    grid-template-areas:
+      "slider slider"
+      "spec spec"
+      "card card";
+  }
 }
 .slider-wrap {
   grid-area: slider;
@@ -241,7 +249,7 @@ h1 {
 }
 .product-spec {
   grid-area: spec;
-    .tabs__table {
+  .tabs__table {
     border-collapse: collapse;
     width: 100%;
     th,
@@ -294,6 +302,11 @@ h1 {
   }
 }
 .block-btn {
+  @media (max-width: @phone) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   button {
     transition-duration: 0.3s;
     border: none;
@@ -362,6 +375,9 @@ h1 {
     text-align: center;
     flex: 1;
     transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover,
     &.active {
       background-color: @blue;
