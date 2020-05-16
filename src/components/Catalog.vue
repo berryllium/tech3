@@ -40,7 +40,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["allCategories"])
+    ...mapGetters(["allCategories", "getAllCount"])
   },
   methods: {
     closeMenu() {
@@ -56,7 +56,9 @@ export default {
     }
   },
   mounted() {
-    if (this.$parent.small) this.showCatalog = false;
+    if (this.$parent.small) {
+      this.showCatalog = false;
+    }
   }
 };
 </script>
@@ -98,13 +100,28 @@ export default {
   .catalog {
     width: 100%;
     &__header {
-    }
-
-    &__title {
-    }
-
-    &__list {
+      padding: 10px;
+      align-items: center;
     }
   }
+  .fa-shopping-cart {
+      position: relative;
+      font-size: 1.6em;
+      margin-right: 15px;
+      .cart-count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.6em;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        color: white;
+        background-color: @blue;
+        position: absolute;
+        right: -10px;
+        top: -5px;
+      }
+    }
 }
 </style>
