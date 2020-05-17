@@ -151,32 +151,15 @@ export default {
   font-weight: bold;
 
   span {
-    left: -30px;
-    top: 7px;
-  }
-  span,
-  span:before,
-  span:after {
     position: absolute;
+    left: -25px;
     display: block;
-    width: 20px;
-    height: 2px;
-    background-color: @blue;
-  }
-
-  span:before,
-  span:after {
-    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid @blue;
+    border-right: 2px solid @blue;
+    transform: rotate(135deg);
     transition: 0.5s;
-    transform-origin: left bottom;
-  }
-
-  span:before {
-    transform: translateY(5px);
-  }
-
-  span:after {
-    transform: translateY(-5px);
   }
 
   @media (max-width: @phone) {
@@ -184,9 +167,8 @@ export default {
   }
 }
 .menu-btn_active {
-  span:before,
-  span:after {
-    width: 10px;
+  span {
+    transform: rotate(225deg);
   }
 
   span:before {
@@ -341,6 +323,7 @@ export default {
 }
 
 .header-info_small {
+  font-size: 0.9em;
   position: relative;
   box-sizing: border-box;
   padding: 15px;
@@ -350,6 +333,7 @@ export default {
   height: 100px;
   .logo {
     position: absolute;
+    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
@@ -363,6 +347,7 @@ export default {
   }
   .delivery {
     width: 45%;
+    margin-top: 30px;
     p {
       font-size: 0.9em;
     }

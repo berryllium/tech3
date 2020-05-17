@@ -1,14 +1,14 @@
 <template>
   <li class="catalog__item">
     <img :src="`db/images/category/${category.id}/${category.img}`" alt class="catalog__icon" />
-    <div class="catalog__title"  @click="selectCat">{{category.name}}</div>
+    <div class="catalog__title" @click="selectCat">{{category.name}}</div>
     <div class="submenu catalog__submenu" v-if="showMenu">
       <div class="submenu__wrap">
         <header class="submenu__header">
           <div class="submenu__title">{{category.name}}</div>
-          <a href="#" class="submenu__link"  @click="selectCat">Все товары &gt;&gt;</a>
+          <a href="#" class="submenu__link" @click="selectCat">Все товары &gt;&gt;</a>
           <div class="submenu__product-cards">
-            <catalog-product v-for="product in products" :product="product" :key="product.id"/>
+            <catalog-product v-for="product in products" :product="product" :key="product.id" />
           </div>
         </header>
         <main class="submenu_main"></main>
@@ -17,30 +17,29 @@
   </li>
 </template>
 <script>
-import CatalogProduct from '@/components/CatalogProduct'
-import { mapGetters, mapActions } from 'vuex'
+import CatalogProduct from "@/components/CatalogProduct";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  props: ['category', 'showMenu'],
+  props: ["category", "showMenu"],
   components: {
-    'catalog-product': CatalogProduct
+    "catalog-product": CatalogProduct
   },
   computed: {
-    ...mapGetters(['allCatalog']),
+    ...mapGetters(["allCatalog"]),
     products() {
-      return this.allCatalog.filter(product => product.category == this.category.name)
+      return this.allCatalog.filter(
+        product => product.category == this.category.name
+      );
     }
   },
   methods: {
     selectCat() {
-      this.$store.dispatch('selectCategory', this.category.name)
-      if(this.$route.fullPath != '/')
-      this.$router.push('/')
-    },
+      this.$store.dispatch("selectCategory", this.category.name);
+      if (this.$route.fullPath != "/") this.$router.push("/");
+    }
   },
-  mounted() {
-
-  }
-}
+  mounted() {}
+};
 </script>
 
 <style lang="less" scoped>
@@ -66,6 +65,11 @@ export default {
     .catalog__submenu {
       display: flex;
       margin-left: -1px;
+    }
+    @media (max-width: @phone) {
+      .catalog__submenu {
+        display: none;
+      }
     }
   }
   .catalog__icon {
