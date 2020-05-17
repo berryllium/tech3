@@ -106,7 +106,9 @@
           >Отзывы</li>
         </ul>
         <div class="tabs__content">
-          <div class="tabs__item" v-if="this.tab=='desc'">{{oneProduct.desc}}</div>
+          <div class="tabs__item" v-if="this.tab=='desc'">
+            <div v-html="oneProduct.desc"></div>
+          </div>
           <div class="tabs__item" v-if="this.tab=='guar'">
             <h4>Гарантия от производителя</h4>
             <li>На данную модель гироскутера распространяется официальная гарантия от производителя на бесплатный ремонт и обслуживание в течении 12 месяцев.</li>

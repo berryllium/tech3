@@ -1,0 +1,39 @@
+.description__wrap {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.description__main {
+  margin-bottom: 10px;
+}
+.description__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+}
+.description__img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.description__text {
+  padding: 15px;
+  background-color: lightgray;
+}
+.description__header {
+  margin: 10px;
+  text-align: center;
+  font-size: 1.5em;
+}
+.description__item {
+  color: coral;
+  margin-bottom: 10px;
+}
+.description__item span{
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .description__block {
+    grid-template-columns: 1fr;
+  }
+}
